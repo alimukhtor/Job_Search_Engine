@@ -15,19 +15,23 @@ const CompanyDetails = () => {
     }
   };
   useEffect(() => {
-    fetchCompanyInfo();
-  }, []);
+    fetchCompanyInfo(companyDetail);
+  }, [companyDetail]);
   return (
     <Container>
-      <h1 className="text-info mt-5">This is "{companyDetail}" Company Details </h1>
+      <h1 className="text-info mt-5">
+        This is "{companyDetail}" Company Details{" "}
+      </h1>
       <Row className="mt-5 d-flex justify-content-center">
         {companyInfo.map((detail) => (
-          <Col xs={12} md={3}>
+          <Col xs={12} md={12}>
             <Card className="text-light mt-5">
               <Card.Img variant="top" src={detail.company_logo_url} />
               <Card.Body>
                 <Card.Title className="text-info">{detail.title}</Card.Title>
-                <Card.Text>{detail.description}</Card.Text>
+                <Card.Text
+                  dangerouslySetInnerHTML={{ __html: detail.description }}
+                ></Card.Text>
                 <Button variant="success">{detail.salary}</Button>
               </Card.Body>
             </Card>
